@@ -3,11 +3,11 @@
 
 //! A small fixed-size thread pool built on crossbeam channels.
 
+use crate::{Job, ThreadPool, ThreadPoolError};
 use crossbeam_channel::unbounded;
 use std::error::Error;
 use std::fmt;
 use std::thread;
-use crate::{Job, ThreadPool, ThreadPoolError};
 
 impl fmt::Display for ThreadPoolError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

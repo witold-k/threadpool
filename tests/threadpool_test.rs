@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright (c) 2026 Witold Kaminski
 
-use threadpool::{ThreadPool, ThreadPoolError};
 use std::sync::{Arc, Mutex};
+use threadpool::{ThreadPool, ThreadPoolError};
 
 #[test]
 fn rejects_zero_workers() {
@@ -34,8 +34,5 @@ fn join_reports_worker_panics() {
     let pool = ThreadPool::new(1).unwrap();
     pool.execute(|| panic!("worker panic")).unwrap();
 
-    assert!(matches!(
-        pool.join(),
-        Err(ThreadPoolError::WorkerPanicked)
-    ));
+    assert!(matches!(pool.join(), Err(ThreadPoolError::WorkerPanicked)));
 }

@@ -3,8 +3,8 @@
 
 pub mod threadpool;
 
-use std::thread;
 use crossbeam_channel::Sender;
+use std::thread;
 
 pub type Job = Box<dyn FnOnce() + Send + 'static>;
 
@@ -20,4 +20,3 @@ pub struct ThreadPool {
     workers: Vec<thread::JoinHandle<()>>,
     sender: Option<Sender<Job>>,
 }
-
